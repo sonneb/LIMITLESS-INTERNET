@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIMITLESS INTERNET FIBER | Booking & Customer Portal</title>
+<style>
+:root{--navy:#061a36;--blue:#0876d9;--cyan:#36c4ef;--bg:#f2f6fb;--ink:#15263d;--muted:#6d7f95;--line:#dce5ef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px Arial,sans-serif;color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer}
+header{background:var(--navy);color:#fff;padding:16px max(4%,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1px}.logo small{display:block;font-size:10px;letter-spacing:3px;color:var(--cyan);margin-top:4px}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav button,.linkbtn{border:0;background:transparent;color:#e8f4ff;padding:10px 12px;border-radius:8px;font-weight:bold}nav button:hover,nav button.active{background:#17395f}
+.hero{background:radial-gradient(circle at 78% 20%,#167ecb,#0a3972 45%,#061a36);color:#fff;padding:65px 20px 85px}.hero-inner{max-width:1120px;margin:auto}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:bold;color:#a9dfff}.hero h1{font-size:clamp(36px,6vw,62px);margin:16px 0;max-width:720px}.hero h1 em{font-style:normal;color:var(--cyan)}.hero p{max-width:620px;color:#d5eaff;line-height:1.7;font-size:17px}.btn{background:linear-gradient(110deg,var(--blue),#0754ae);color:#fff;border:0;border-radius:9px;padding:13px 18px;font-weight:bold}.btn.light{background:#fff;color:#0754ae}.btn.secondary{background:#eaf3fc;color:#0754ae}.btn.danger{background:#b42318}.btn.small{padding:8px 11px;font-size:12px}
+.container{max-width:1180px;margin:auto;padding:38px 18px}.section-head{text-align:center;margin:0 0 24px}.section-head h2{font-size:30px;margin:8px}.muted{color:var(--muted);line-height:1.5}.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:13px;margin:22px 0 42px}.pkg{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 12px;display:flex;flex-direction:column;gap:8px;cursor:pointer}.pkg:has(input:checked){border:2px solid var(--blue);background:#eef7ff}.pkg input{position:absolute;right:12px;top:12px}.speed{font-size:25px;font-weight:900;color:var(--blue)}.pkg small{color:var(--muted)}
+.card{background:#fff;border:1px solid #e7edf4;border-radius:16px;padding:24px;box-shadow:0 10px 30px #102b4b0a}.booking{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field label,label{font-weight:bold;font-size:13px}.field input,.field select,.field textarea,.login input,.filters input,.filters select{width:100%;border:1px solid #cdd9e6;border-radius:8px;padding:12px;background:#fff}.full{grid-column:1/-1}.benefit{margin-top:14px;color:#36516e}.hidden{display:none!important}
+.pagehead{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.pagehead h1{margin:8px 0;font-size:32px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}.stat small{color:var(--muted)}.stat b{display:block;color:var(--blue);font-size:28px;margin-top:8px;overflow-wrap:anywhere}
+.tablewrap{overflow:auto;margin-top:15px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #e8edf3;font-size:13px}th{background:#f7f9fc;color:#62758c}td small{display:block;color:var(--muted);margin-top:4px}.status{display:inline-block;padding:5px 9px;border-radius:30px;font-size:11px;font-weight:bold}.pending{background:#fff4d8;color:#936000}.approved{background:#e4f8ec;color:#16713d}.rejected{background:#ffebeb;color:#b42318}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap}.toolbar input,.toolbar select{border:1px solid var(--line);border-radius:8px;padding:10px}.loginbox{max-width:460px;margin:40px auto}.loginbox form{display:grid;gap:12px}.notice{padding:13px 16px;border-radius:9px;margin:14px 0;background:#e8f3ff;color:#164a78}.success{background:#e7f8ef;color:#17663b}.warning{background:#fff5dc;color:#795500}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tabs button{border:0;border-radius:8px;padding:10px 13px;background:#e8eef6;color:#34516f;font-weight:bold}.tabs button.active{background:var(--navy);color:#fff}.footer{text-align:center;color:#7b8da2;padding:25px;font-size:12px}
+@media(max-width:760px){.booking{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:48px 18px 65px}header{align-items:flex-start}nav{width:100%}nav button{padding:8px}.container{padding:28px 14px}}
+@media print{header,nav,.no-print,.footer{display:none!important}body{background:#fff}.container{padding:0}.card{box-shadow:none}}
+
+/* Branded startup / loading screen */
+#siteLoader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 75% 18%,#147bc0 0,#0b3b73 38%,#061a36 78%);color:#fff;opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s ease}
+#siteLoader.loader-hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-content{width:min(360px,100%);text-align:center}
+.loader-symbol{width:76px;height:76px;margin:0 auto 18px;border:2px solid #5bd5ff;border-radius:22px;display:grid;place-items:center;font-size:48px;font-weight:700;color:#5bd5ff;box-shadow:0 0 35px #36c4ef44;animation:loaderPulse 1.5s ease-in-out infinite}
+.loader-title{font-size:25px;font-weight:900;letter-spacing:1.5px}
+.loader-subtitle{margin-top:5px;color:#a9dfff;font-size:10px;letter-spacing:4px}
+.loader-message{margin:28px 0 12px;color:#d9edff;font-size:13px}
+.loader-track{height:5px;border-radius:9px;background:#ffffff30;overflow:hidden}
+.loader-progress{height:100%;width:35%;border-radius:9px;background:linear-gradient(90deg,#36c4ef,#fff);animation:loaderProgress 1.7s ease-in-out forwards}
+.loader-foot{margin-top:14px;color:#b9d7f1;font-size:10px;letter-spacing:1px}
+@keyframes loaderProgress{from{width:5%}to{width:100%}}
+@keyframes loaderPulse{50%{transform:scale(1.06);box-shadow:0 0 48px #36c4ef77}}
+@media(prefers-reduced-motion:reduce){#siteLoader,.loader-symbol,.loader-progress{animation:none;transition:none}.loader-progress{width:100%}}
+</style>
+</head>
+<body>
+<div id="siteLoader" role="status" aria-live="polite" aria-label="Loading Limitless Internet Fiber website">
+ <div class="loader-content">
+  <div class="loader-symbol">∞</div>
+  <div class="loader-title">LIMITLESS</div>
+  <div class="loader-subtitle">INTERNET FIBER</div>
+  <div class="loader-message">Connecting you to limitless possibilities...</div>
+  <div class="loader-track"><div class="loader-progress"></div></div>
+  <div class="loader-foot">FAST · RELIABLE · LIMITLESS</div>
+ </div>
+</div>
+
+<header>
+ <div class="logo">∞ LIMITLESS<small>INTERNET FIBER</small></div>
+ <nav id="nav">
+  <button class="active" data-view="home">Home / Booking</button>
+  <button data-view="customerLogin">Customer Portal</button>
+  <button data-view="adminLogin">Admin</button>
+ </nav>
+</header>
+
+<section id="home" class="view">
+ <div class="hero"><div class="hero-inner"><span class="eyebrow">FIBER INTERNET FOR HOME & BUSINESS</span><h1>Experience <em>Limitless</em> Internet.</h1><p>Choose your preferred speed and request a connection. Submit your details and our team will follow up to confirm coverage, pricing and installation.</p><button class="btn light" onclick="document.getElementById('bookingCard').scrollIntoView({behavior:'smooth'})">Book your connection</button></div></div>
+ <main class="container">
+  <div id="bookingMessage"></div>
+  <div class="section-head"><span class="eyebrow" style="color:#0876d9">OUR PACKAGES</span><h2>Choose your speed</h2><p class="muted">Select a package. Monthly charges are subject to confirmation by the service provider.</p></div>
+  <div class="packages" id="packageCards"></div><p class="muted" id="connectionFeesDisplay"></p>
+  <section class="card booking" id="bookingCard">
+   <div><span class="eyebrow" style="color:#0876d9">GET CONNECTED</span><h2>Book an installation</h2><p class="muted">Enter your contact details and installation location.</p><div class="benefit">✓ Coverage check before installation</div><div class="benefit">✓ Home, office and business connections</div><div class="benefit">✓ Booking reference for follow-up</div></div>
+   <form id="bookingForm" class="formgrid">
+    <div class="field"><label>Full name *</label><input name="name" required maxlength="100"></div>
+    <div class="field"><label>Phone number *</label><input name="phone" required placeholder="07xx xxx xxx"></div>
+    <div class="field"><label>Installation area / village *</label><input name="area" required></div>
+    <div class="field"><label>Nearest landmark</label><input name="landmark"></div>
+    <div class="field"><label>Connection type *</label><select name="type" required><option value="">Select</option><option>Home</option><option>Business</option><option>Office</option></select></div>
+    <div class="field"><label>Request type *</label><select name="request" required><option>New connection</option><option>Upgrade</option><option>Relocation</option></select></div>
+    <div class="field full"><label>Additional information</label><textarea name="notes" rows="3"></textarea></div>
+    <button class="btn full">SUBMIT BOOKING REQUEST</button>
+   </form>
+  </section>
+ </main>
+</section>
+
+<section id="customerLogin" class="view hidden"><main class="container"><div class="card loginbox"><span class="eyebrow" style="color:#0876d9">CUSTOMER PORTAL</span><h1>Customer sign in</h1><p class="muted">Use your booking reference to create an account on this demo, then sign in with your phone number.</p><form id="customerLoginForm"><div class="field"><label>Phone number</label><input name="phone" required></div><div class="field"><label>Booking reference</label><input name="ref" required placeholder="LIF-YYMMDD-XXXXXX"></div><button class="btn">Open my dashboard</button></form><div class="notice">Demo mode: this HTML version stores data in this browser only. It does not provide secure online accounts.</div></div></main></section>
+
+<section id="customerDashboard" class="view hidden"><main class="container">
+ <div class="pagehead"><div><span class="eyebrow" style="color:#0876d9">MY INTERNET ACCOUNT</span><h1 id="customerWelcome">Welcome</h1><p class="muted">View your booking requests and their latest status.</p></div><button class="btn secondary" onclick="customerLogout()">Sign out</button></div>
+ <div class="stats" id="customerStats"></div><section class="card"><div class="pagehead"><h2>My connection requests</h2><button class="btn" onclick="showView('home')">＋ New booking</button></div><div class="tablewrap" id="customerTable"></div></section>
+ <div class="notice">For support or booking follow-up, call <b>0719477726</b> / <b>0758507321</b>.</div>
+ </main></section>
+
+<section id="adminLogin" class="view hidden"><main class="container"><div class="card loginbox"><span class="eyebrow" style="color:#0876d9">ADMINISTRATION</span><h1>Administrator login</h1><p class="muted">Demo credentials: <b>admin</b> / <b>admin123</b></p><form id="adminLoginForm"><div class="field"><label>Username</label><input name="user" required></div><div class="field"><label>Password</label><input type="password" name="pass" required></div><button class="btn">Sign in</button></form><div class="notice warning">Change these demo credentials before any real use. This static HTML login is not secure for a public website.</div></div></main></section>
+
+<section id="adminDashboard" class="view hidden"><main class="container">
+ <div class="pagehead"><div><span class="eyebrow" style="color:#0876d9">CONTROL PANEL</span><h1>Admin dashboard</h1><p class="muted">Manage customer bookings and internet packages.</p></div><button class="btn secondary" onclick="adminLogout()">Log out</button></div>
+ <div class="stats" id="adminStats"></div>
+ <div class="tabs"><button class="active" data-tab="bookingsTab">Customer bookings</button><button data-tab="packagesTab">Manage packages</button></div>
+ <section id="bookingsTab" class="card"><div class="pagehead"><h2>Customer applications</h2><div class="toolbar"><input id="areaSearch" placeholder="Search installation area"><select id="statusFilter"><option value="">All statuses</option><option>Pending</option><option>Approved</option><option>Rejected</option></select><button class="btn small" onclick="renderAdmin()">Filter</button><button class="btn small secondary" onclick="exportCSV()">Export Excel CSV</button></div></div><div class="tablewrap" id="adminTable"></div></section>
+ <section id="packagesTab" class="card hidden"><h2>Internet packages & monthly prices</h2><p class="muted">Update package names, speeds and monthly prices, then save all changes.</p><div id="packageAdmin"></div><button class="btn" type="button" onclick="saveAllPackages()">Save all package prices</button><h3>Connection & installation charges</h3><div class="formgrid"><div class="field"><label>New connection fee (KSh)</label><input id="newConnectionFee" type="number" min="0" value="0"></div><div class="field"><label>Installation fee (KSh)</label><input id="installationFee" type="number" min="0" value="0"></div></div><button class="btn" type="button" onclick="saveConnectionFees()">Save connection fees</button><h3>Add a package</h3><form id="addPackageForm" class="formgrid"><div class="field"><label>Package name</label><input name="name" required></div><div class="field"><label>Speed</label><input name="speed" placeholder="40 Mbps" required></div><div class="field"><label>Monthly price (KSh)</label><input name="price" type="number" min="0" required value="0"></div><button class="btn">Add package</button></form></section>
+ </main></section>
+
+<div class="footer">© <span id="year"></span> LIMITLESS INTERNET FIBER · Fast. Reliable. Limitless.</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const defaultPackages=[
+ {id:1,name:'Starter',speed:'5 Mbps',price:0,active:true},{id:2,name:'Everyday',speed:'8 Mbps',price:0,active:true},
+ {id:3,name:'Home',speed:'10 Mbps',price:0,active:true},{id:4,name:'Family',speed:'15 Mbps',price:0,active:true},
+ {id:5,name:'Streaming',speed:'20 Mbps',price:0,active:true},{id:6,name:'Plus',speed:'25 Mbps',price:0,active:true},
+ {id:7,name:'Premium',speed:'30 Mbps',price:0,active:true}
+];
+const get=(k,d)=>{try{return JSON.parse(localStorage.getItem('lif_'+k))??d}catch{return d}};
+const put=(k,v)=>localStorage.setItem('lif_'+k,JSON.stringify(v));
+let packages=get('packages',defaultPackages), bookings=get('bookings',[]), customerPhone='';
+let connectionFees=get('connectionFees',{newConnection:0,installation:0});
+document.getElementById('year').textContent=new Date().getFullYear();
+function showView(id){document.querySelectorAll('.view').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo(0,0)}
+document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>showView(b.dataset.view));
+function renderPackages(){
+ document.getElementById('connectionFeesDisplay').textContent='One-time new connection fee: KSh '+Number(connectionFees.newConnection||0).toLocaleString()+' · Installation fee: KSh '+Number(connectionFees.installation||0).toLocaleString();
+ const box=document.getElementById('packageCards');box.innerHTML='';
+ packages.filter(p=>p.active).forEach((p,i)=>{const lab=document.createElement('label');lab.className='pkg';lab.innerHTML=`<input type="radio" name="package" value="${p.id}" ${i===0?'checked':''}><span class="speed">${esc(p.speed)}</span><b>${esc(p.name)}</b><small>${p.price>0?'KSh '+Number(p.price).toLocaleString()+'/month':'Price on confirmation'}</small>`;box.appendChild(lab)});
+}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function reference(){return 'LIF-'+new Date().toISOString().slice(2,10).replaceAll('-','')+'-'+Math.random().toString(36).slice(2,8).toUpperCase()}
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();const f=new FormData(e.target),pkg=packages.find(p=>p.id===Number(document.querySelector('input[name=package]:checked')?.value));
+ if(!pkg){alert('Please select an internet package.');return}
+ const b={id:Date.now(),ref:reference(),name:f.get('name').trim(),phone:f.get('phone').trim(),area:f.get('area').trim(),landmark:f.get('landmark'),type:f.get('type'),request:f.get('request'),notes:f.get('notes'),packageId:pkg.id,packageLabel:pkg.name,packageSpeed:pkg.speed,packageName:pkg.speed,price:Number(pkg.price)||0,newConnectionFee:f.get('request')==='New connection'?Number(connectionFees.newConnection)||0:0,installationFee:Number(connectionFees.installation)||0,status:'Pending',date:new Date().toISOString()};
+ bookings.unshift(b);put('bookings',bookings);e.target.reset();renderPackages();
+ document.getElementById('bookingMessage').innerHTML=`<div class="notice success"><b>Booking received.</b> Your reference number is <strong>${esc(b.ref)}</strong>. Keep it for follow-up.<br>For assistance call <b>0719477726 / 0758507321</b>.<br><button class="btn" type="button" onclick="downloadBookingReceipt('${esc(b.ref)}')">Download booking receipt</button></div>`;
+ window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('customerLoginForm').addEventListener('submit',e=>{
+ e.preventDefault();const f=new FormData(e.target),phone=f.get('phone').trim(),ref=f.get('ref').trim().toUpperCase();
+ const found=bookings.some(b=>b.phone===phone&&b.ref===ref);
+ if(!found){alert('Booking reference and phone number do not match a booking in this browser.');return}
+ customerPhone=phone;renderCustomer();showView('customerDashboard');
+});
+function renderCustomer(){
+ const mine=bookings.filter(b=>b.phone===customerPhone),pending=mine.filter(b=>b.status==='Pending').length,approved=mine.filter(b=>b.status==='Approved').length;
+ document.getElementById('customerWelcome').textContent='Welcome, '+(mine[0]?.name||'Customer');
+ document.getElementById('customerStats').innerHTML=[['Total applications',mine.length],['Pending',pending],['Approved',approved],['Registered phone',customerPhone]].map(x=>`<div class="stat"><small>${x[0]}</small><b style="${x[0]==='Registered phone'?'font-size:18px':''}">${esc(x[1])}</b></div>`).join('');
+ document.getElementById('customerTable').innerHTML=tableHTML(mine,false);
+}
+function tableHTML(rows,admin){
+ if(!rows.length)return '<p class="muted">No bookings found.</p>';
+ return `<table><thead><tr><th>Reference</th><th>Customer</th><th>Package</th><th>One-time fees</th><th>Area</th><th>Status</th><th>Date</th>${admin?'<th>Update</th><th>Print</th>':'<th>Document</th>'}</tr></thead><tbody>`+rows.map(b=>`<tr><td><b>${esc(b.ref)}</b></td><td>${esc(b.name)}<small>${esc(b.phone)} · ${esc(b.type)}</small></td><td>${esc(b.packageName)}<small>${b.price?'KSh '+Number(b.price).toLocaleString()+'/month':'Price TBC'}</small></td><td><small>New connection: KSh ${Number(b.newConnectionFee)||0}</small><small>Installation: KSh ${Number(b.installationFee)||0}</small></td><td>${esc(b.area)}<small>${esc(b.landmark)}</small></td><td><span class="status ${b.status.toLowerCase()}">${esc(b.status)}</span></td><td>${new Date(b.date).toLocaleDateString()}</td>${admin?`<td><select onchange="changeStatus(${b.id},this.value)"><option ${b.status==='Pending'?'selected':''}>Pending</option><option ${b.status==='Approved'?'selected':''}>Approved</option><option ${b.status==='Rejected'?'selected':''}>Rejected</option></select></td><td><button class="btn small secondary" onclick="printBooking(${b.id})">Print</button></td>`:`<td><button class="btn small" onclick="downloadRegistrationNote(${b.id})">Download note</button></td>`}</tr>`).join('')+'</tbody></table>';
+}
+function customerLogout(){customerPhone='';showView('customerLogin')}
+document.getElementById('adminLoginForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);if(f.get('user')==='admin'&&f.get('pass')==='admin123'){renderAdmin();showView('adminDashboard')}else alert('Incorrect demo administrator credentials.')});
+function adminLogout(){showView('adminLogin')}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('bookingsTab').classList.toggle('hidden',b.dataset.tab!=='bookingsTab');document.getElementById('packagesTab').classList.toggle('hidden',b.dataset.tab!=='packagesTab')});
+function renderAdmin(){
+ const pending=bookings.filter(b=>b.status==='Pending').length,approved=bookings.filter(b=>b.status==='Approved').length,rejected=bookings.filter(b=>b.status==='Rejected').length;
+ document.getElementById('adminStats').innerHTML=[['Total bookings',bookings.length],['Pending',pending],['Approved',approved],['Rejected',rejected]].map(x=>`<div class="stat"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');
+ const area=document.getElementById('areaSearch').value.toLowerCase(),status=document.getElementById('statusFilter').value;
+ const rows=bookings.filter(b=>b.area.toLowerCase().includes(area)&&(!status||b.status===status));
+ document.getElementById('adminTable').innerHTML=tableHTML(rows,true);renderPackageAdmin();document.getElementById('newConnectionFee').value=Number(connectionFees.newConnection)||0;document.getElementById('installationFee').value=Number(connectionFees.installation)||0;
+}
+function changeStatus(id,status){bookings=bookings.map(b=>b.id===id?{...b,status}:b);put('bookings',bookings);renderAdmin()}
+function renderPackageAdmin(){
+ document.getElementById('packageAdmin').innerHTML=packages.map(p=>`<div class="card" style="margin:10px 0;padding:15px"><div class="formgrid"><div class="field"><label>Package name</label><input id="pn${p.id}" value="${esc(p.name)}"></div><div class="field"><label>Speed</label><input id="ps${p.id}" value="${esc(p.speed)}"></div><div class="field"><label>Monthly price (KSh)</label><input id="pp${p.id}" type="number" min="0" value="${Number(p.price)}"></div><div class="field"><label><input id="pa${p.id}" type="checkbox" ${p.active?'checked':''} style="width:auto"> Available</label><button class="btn small" onclick="savePackage(${p.id})">Save package</button></div></div></div>`).join('');
+}
+function savePackage(id){packages=packages.map(p=>p.id===id?{...p,name:document.getElementById('pn'+id).value,speed:document.getElementById('ps'+id).value,price:Number(document.getElementById('pp'+id).value),active:document.getElementById('pa'+id).checked}:p);put('packages',packages);renderPackages();renderAdmin()}
+function saveConnectionFees(){connectionFees={newConnection:Math.max(0,Number(document.getElementById('newConnectionFee').value)||0),installation:Math.max(0,Number(document.getElementById('installationFee').value)||0)};put('connectionFees',connectionFees);renderPackages();alert('New connection and installation fees saved successfully.');}
+function saveAllPackages(){packages=packages.map(p=>({...p,name:document.getElementById("pn"+p.id).value.trim(),speed:document.getElementById("ps"+p.id).value.trim(),price:Number(document.getElementById("pp"+p.id).value)||0,active:document.getElementById("pa"+p.id).checked}));put("packages",packages);renderPackages();renderAdmin();alert("All internet packages and monthly prices have been saved successfully on this device.");}
+document.getElementById('addPackageForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);packages.push({id:Date.now(),name:f.get('name'),speed:f.get('speed'),price:Number(f.get('price')),active:true});put('packages',packages);e.target.reset();renderPackages();renderAdmin()});
+function exportCSV(){const cols=['Reference','Name','Phone','Package','Area','Landmark','Connection','Request','Monthly Price KSh','New Connection Fee KSh','Installation Fee KSh','Status','Date'];const lines=[cols,...bookings.map(b=>[b.ref,b.name,b.phone,b.packageName,b.area,b.landmark,b.type,b.request,b.price,b.newConnectionFee||0,b.installationFee||0,b.status,b.date])];const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download='limitless-fiber-bookings.csv';a.click();URL.revokeObjectURL(a.href)}
+function downloadBookingReceipt(ref){
+  const b=bookings.find(x=>x.ref===ref);if(!b)return;
+  const newFee=Number(b.newConnectionFee)||0,installFee=Number(b.installationFee)||0,total=newFee+installFee;
+  const money=n=>'KSh '+Number(n||0).toLocaleString('en-KE');
+  const date=new Date(b.date).toLocaleString('en-KE');
+  const packageText=b.packageLabel?(b.packageLabel+' ('+(b.packageSpeed||b.packageName)+')'):(b.packageName||'Not specified');
+
+  // Use jsPDF to create a real, compact 80mm-wide PDF receipt.
+  if(!window.jspdf||!window.jspdf.jsPDF){
+    alert('PDF generator could not load. Please check your internet connection and try again.');
+    return;
+  }
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:[80,170]});
+  const left=5,right=70,width=65;
+  let y=9;
+  const line=(gap=4)=>{doc.setDrawColor(190,205,220);doc.line(left,y,right,y);y+=gap;};
+  const wrap=(label,value)=>{
+    doc.setFont('helvetica','bold');doc.setFontSize(8);
+    const a=doc.splitTextToSize(label,width);
+    a.forEach(t=>{doc.text(t,left,y);y+=3.6;});
+    doc.setFont('helvetica','normal');
+    const bLines=doc.splitTextToSize(String(value??'—'),width);
+    bLines.forEach(t=>{doc.text(t,left,y);y+=3.6;});
+    y+=1.2;
+  };
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(7,84,174);
+  doc.text('LIMITLESS INTERNET FIBER',40,y,{align:'center'});y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(40,60,80);
+  doc.text('BOOKING RECEIPT',40,y,{align:'center'});y+=5;line(4);
+
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(7,84,174);
+  doc.text('REFERENCE: '+b.ref,left,y);y+=5;line(4);
+  doc.setTextColor(25,40,60);
+  wrap('Customer name',b.name);
+  wrap('Phone number',b.phone);
+  wrap('Selected package',packageText);
+  wrap('Monthly subscription',b.price?money(b.price):'To be confirmed');
+  line(4);
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text('CHARGES',left,y);y+=4;
+  wrap('New connection fee',money(newFee));
+  wrap('Installation fee',money(installFee));
+  doc.setFont('helvetica','bold');doc.text('TOTAL ONE-TIME CHARGES',left,y);y+=4;
+  doc.setFontSize(9);doc.setTextColor(7,84,174);doc.text(money(total),left,y);y+=5;
+  doc.setTextColor(25,40,60);line(4);
+  wrap('Installation area',b.area);
+  if(b.landmark)wrap('Nearest landmark',b.landmark);
+  wrap('Booking date',date);
+  wrap('Application status',b.status);
+  line(4);
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text('IMPORTANT',left,y);y+=4;
+  doc.setFont('helvetica','normal');doc.setFontSize(7);
+  const note=doc.splitTextToSize('This receipt confirms booking submission only. It is not proof of payment and does not confirm installation.',width);
+  note.forEach(t=>{doc.text(t,left,y);y+=3.2;});
+  y+=3;line(4);
+  doc.setFont('helvetica','bold');doc.setFontSize(8);doc.text('CUSTOMER SUPPORT',40,y,{align:'center'});y+=4;
+  doc.setFont('helvetica','bold');doc.setTextColor(7,84,174);doc.text('0719477726 / 0758507321',40,y,{align:'center'});y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(70,85,100);
+  doc.text('Thank you for choosing LIMITLESS INTERNET FIBER.',40,y,{align:'center'});
+  // Resize the page to the actual receipt content to avoid excess blank paper.
+  doc.internal.pageSize.setHeight(Math.max(100,y+9));
+  doc.save('Limitless_Fiber_Booking_Receipt_'+b.ref+'.pdf');
+}
+function downloadRegistrationNote(id){
+ const b=bookings.find(x=>x.id===id);if(!b)return;
+ const rows=[['Registration reference',b.ref],['Full name',b.name],['Phone number',b.phone],['Internet package',b.packageName],['Monthly subscription',b.price?'KSh '+Number(b.price).toLocaleString():'To be confirmed'],['New connection fee','KSh '+(Number(b.newConnectionFee)||0)],['Installation fee','KSh '+(Number(b.installationFee)||0)],['Installation area',b.area],['Nearest landmark',b.landmark||'Not provided'],['Connection type',b.type],['Request type',b.request],['Application status',b.status],['Date submitted',new Date(b.date).toLocaleString()],['Additional information',b.notes||'None']];
+ const html=`<!doctype html><html><head><meta charset="utf-8"><title>Limitless Fiber Registration ${esc(b.ref)}</title><style>body{font:15px Arial,sans-serif;color:#142b45;margin:35px auto;max-width:800px;padding:20px}h1{color:#0754ae;margin-bottom:4px}.sub{color:#526b85}table{width:100%;border-collapse:collapse;margin-top:24px}td{padding:11px;border:1px solid #d8e2ed}td:first-child{font-weight:bold;background:#f3f7fb;width:38%}.ref{background:#eaf4ff;padding:14px;border-radius:8px;font-size:18px;font-weight:bold}.note{margin-top:24px;padding:15px;background:#fff7df;border-left:4px solid #e0a000}.contact{margin-top:25px;padding-top:15px;border-top:2px solid #0876d9;font-weight:bold}@media print{body{margin:0}}</style></head><body><h1>∞ LIMITLESS INTERNET FIBER</h1><div class="sub">Customer booking and registration confirmation</div><p class="ref">REFERENCE: ${esc(b.ref)}</p><p>Dear ${esc(b.name)}, your connection request has been received. Keep this note for your records and use the reference number when contacting our team.</p><table>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table><div class="note"><b>Important:</b> This is a booking/registration note, not a proof of payment or tax receipt. Fees shown are charges recorded with your request; confirm payment instructions with the service provider.</div><div class="contact">Customer support: 0719477726 / 0758507321</div><p>Thank you for choosing LIMITLESS INTERNET FIBER.</p></body></html>`;
+ const blob=new Blob([html],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`Limitless_Fiber_Registration_${b.ref}.html`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function printBooking(id){const b=bookings.find(x=>x.id===id);if(!b)return;const w=window.open('','_blank');w.document.write(`<html><head><title>Registration ${esc(b.ref)}</title><style>body{font:15px Arial;padding:35px;color:#123}h1{color:#0754ae}table{width:100%;border-collapse:collapse}td{padding:12px;border:1px solid #ddd}td:first-child{font-weight:bold;width:35%}</style></head><body><h1>∞ LIMITLESS INTERNET FIBER</h1><h2>Customer Registration Form</h2><h3>Reference: ${esc(b.ref)}</h3><table>${[['Full name',b.name],['Phone',b.phone],['Package',b.packageName],['Monthly price',b.price?'KSh '+b.price:'To be confirmed'],['New connection fee','KSh '+(Number(b.newConnectionFee)||0)],['Installation fee','KSh '+(Number(b.installationFee)||0)],['Area',b.area],['Landmark',b.landmark],['Connection type',b.type],['Request type',b.request],['Status',b.status],['Date',new Date(b.date).toLocaleString()],['Notes',b.notes]].map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</table><p><b>Customer support:</b> 0719477726 / 0758507321</p><p style="margin-top:45px">Customer signature: __________________ &nbsp; Officer: __________________</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+renderPackages();
+// Show the branded intro briefly before revealing the website.
+window.addEventListener('load',()=>{
+  const loader=document.getElementById('siteLoader');
+  window.setTimeout(()=>{if(loader){loader.classList.add('loader-hidden');window.setTimeout(()=>loader.remove(),650);}},1900);
+});
+</script>
+</body></html>
